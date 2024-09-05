@@ -139,8 +139,8 @@ class FadingEdgeScrollView extends StatefulWidget {
     );
   }
 
-  /// Constructor for creating [FadingEdgeScrollView] with [ScrollView] as child
-  /// child must have [ScrollView.controller] set
+  /// Constructor for creating [FadingEdgeScrollView] with [ListWheelScrollView] as child
+  /// child must have [ListWheelScrollView.controller] set
   factory FadingEdgeScrollView.fromListWheelScrollView({
     Key? key,
     required ListWheelScrollView child,
@@ -183,7 +183,7 @@ class FadingEdgeScrollViewState extends State<FadingEdgeScrollView>
   }
 
   bool get _controllerIsReady =>
-      _controller.hasClients && _controller.positions.last.hasContentDimensions;
+      _controller.hasClients && _controller.positions.isNotEmpty && _controller.positions.last.hasContentDimensions;
 
   @override
   void dispose() {
