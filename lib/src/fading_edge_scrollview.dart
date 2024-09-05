@@ -306,3 +306,49 @@ enum _ScrollState {
       this == _ScrollState.scrollableAtStart ||
       this == _ScrollState.scrollableInTheMiddle;
 }
+
+// Example Usage:
+class MyWidget extends StatefulWidget {
+  const MyWidget({Key? key}) : super(key: key);
+
+  @override
+  State<MyWidget> createState() => _MyWidgetState();
+}
+
+class _MyWidgetState extends State<MyWidget> {
+  late ScrollController _scrollController;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController = ScrollController();
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: FadingEdgeScrollView.fromScrollView(
+        child: PageView(
+          controller: _scrollController,
+          children: [
+            Container(
+              color: Colors.red,
+            ),
+            Container(
+              color: Colors.blue,
+            ),
+            Container(
+              color: Colors.green,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
